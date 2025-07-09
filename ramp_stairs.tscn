@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://bn5wajsphcfws"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_noarx"]
+size = Vector3(20, 1, 20)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_a0tk4"]
+size = Vector3(20, 1.19543, 20)
+
+[node name="RampStairs" type="StaticBody3D"]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(-0.0663104, -0.947656, -1.75999, -1.53948e-07, -1.76096, 0.948179, -1.9989, 0.0314371, 0.0583849, 0, 0, 0)
+mesh = SubResource("BoxMesh_noarx")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(-0.0663104, -0.947656, -1.75999, -1.53948e-07, -1.76096, 0.948179, -1.9989, 0.0314371, 0.0583849, 0, 0, 0)
+shape = SubResource("BoxShape3D_a0tk4")
