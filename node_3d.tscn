@@ -1,0 +1,117 @@
+[gd_scene load_steps=12 format=3 uid="uid://yrshypfu8se1"]
+
+[ext_resource type="PackedScene" uid="uid://cnlbrsxwtdm2c" path="res://floor_2.tscn" id="1_noarx"]
+[ext_resource type="PackedScene" uid="uid://dc6udabl1pnyk" path="res://player.tscn" id="2_a0tk4"]
+[ext_resource type="PackedScene" uid="uid://bn5wajsphcfws" path="res://ramp_stairs.tscn" id="3_a0tk4"]
+[ext_resource type="PackedScene" uid="uid://ce5t1r3lh6pex" path="res://static_body_3d.tscn" id="4_r3fl7"]
+[ext_resource type="PackedScene" uid="uid://cxfmimhjqk08s" path="res://doorwalsroom_1_up.tscn" id="5_i5arm"]
+[ext_resource type="PackedScene" uid="uid://b1ms7hqk6ufhu" path="res://doorwallsroom.tscn" id="6_wc5p8"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_a0tk4"]
+sky_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
+ground_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
+
+[sub_resource type="Sky" id="Sky_r3fl7"]
+sky_material = SubResource("ProceduralSkyMaterial_a0tk4")
+
+[sub_resource type="Environment" id="Environment_jka67"]
+background_mode = 2
+sky = SubResource("Sky_r3fl7")
+tonemap_mode = 2
+glow_enabled = true
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_r3fl7"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_noarx"]
+size = Vector3(20, 1, 20)
+
+[node name="Node3D" type="Node3D"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_jka67")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.866023, -0.433016, 0.250001, 0, 0.499998, 0.866027, -0.500003, 0.749999, -0.43301, 0, 0, 0)
+shadow_enabled = true
+
+[node name="trapfloor" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 19.3658)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="trapfloor"]
+shape = SubResource("BoxShape3D_r3fl7")
+
+[node name="floor1" parent="." instance=ExtResource("1_noarx")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5.09831, 1.53273)
+
+[node name="floor1" parent="floor1" instance=ExtResource("1_noarx")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 7.08758, -0.132317)
+
+[node name="floor1" parent="floor1/floor1" instance=ExtResource("1_noarx")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.577468, -39.1973)
+
+[node name="floor2" parent="." instance=ExtResource("1_noarx")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00504208, 5.09564, -18.346)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="floor2/MeshInstance3D" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -28.9296)
+mesh = SubResource("BoxMesh_noarx")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="floor2/MeshInstance3D/MeshInstance3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -19.6236, 0, 0.21648)
+mesh = SubResource("BoxMesh_noarx")
+
+[node name="floor3" parent="." instance=ExtResource("1_noarx")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 58.2443, -25.9037, -8.09966)
+
+[node name="MeshInstance3D" parent="floor3" index="0"]
+transform = Transform3D(0.0283229, 0, -0.999599, 0, 1, 0, 0.999599, 0, 0.0283229, -58.6185, 31.0386, -30.1768)
+
+[node name="CollisionShape3D" parent="floor3" index="1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -58.6, 31, -30.1)
+
+[node name="player" parent="." instance=ExtResource("2_a0tk4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.33494, 6.60906, -0.0118036)
+
+[node name="RampStairs" parent="." instance=ExtResource("3_a0tk4")]
+transform = Transform3D(-0.0144857, 0, 0.999895, 0, 1, 0, -0.999895, 0, -0.0144857, -11.8466, -4.73131, -74.2666)
+
+[node name="wallroom1" parent="." instance=ExtResource("4_r3fl7")]
+transform = Transform3D(0.999684, -0.00179712, -0.0250778, 0.00179769, 0.999998, 0, 0.0250778, -4.50822e-05, 0.999686, 0, 8.73193, 11.1018)
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="wallroom1"]
+transform = Transform3D(0.859934, 0.443811, -0.252082, -0.00310276, 0.498422, 0.86693, 0.510396, -0.744719, 0.429986, -1.63095, -8.71034, -47.0646)
+shadow_enabled = true
+
+[node name="wallroom1" parent="wallroom1" instance=ExtResource("4_r3fl7")]
+transform = Transform3D(-0.997678, 0.00538112, -0.0678935, 0.00538833, 0.999985, 7.69696e-05, 0.0678929, -0.000289041, -0.997693, -1.48355, 0.0213184, -58.8704)
+
+[node name="wallroom3" parent="wallroom1" instance=ExtResource("4_r3fl7")]
+transform = Transform3D(0.0013284, 0.00178204, -0.999997, -0.0198417, 0.999801, 0.00175533, 0.999801, 0.0198394, 0.00136342, 8.00142, -0.277481, -49.3423)
+
+[node name="doorwallsroom" parent="wallroom1" instance=ExtResource("6_wc5p8")]
+transform = Transform3D(-0.99992, 0.00359524, 0.0120424, 0.00359524, 0.999993, -2.16485e-05, -0.0120424, 2.16485e-05, -0.999927, -0.938684, -8.71159, -47.082)
+
+[node name="doorwallsroom2" parent="wallroom1" instance=ExtResource("6_wc5p8")]
+transform = Transform3D(-0.99992, 0.00359524, 0.0120424, 0.00359524, 0.999993, -2.16485e-05, -0.0120424, 2.16485e-05, -0.999927, -13.114, -8.18279, -47.2029)
+
+[node name="wallroom3" parent="." instance=ExtResource("4_r3fl7")]
+transform = Transform3D(-0.0134396, 0.00157372, 0.999909, -0.0198152, 0.999802, -0.00183989, -0.999713, -0.0198382, -0.0134057, -9.60734, 8.73193, 1.47939)
+
+[node name="wallroom3" parent="wallroom3" instance=ExtResource("4_r3fl7")]
+transform = Transform3D(0.999425, -0.00138759, 0.0338743, 0.00203632, 0.999815, -0.0191223, -0.0338416, 0.0191803, 0.999243, 38.044, 0.648749, 0.547325)
+
+[node name="wallroom2" parent="." instance=ExtResource("4_r3fl7")]
+transform = Transform3D(0.0191101, -3.43539e-05, -0.999817, 0.00179769, 0.999998, -1.81883e-12, 0.999816, -0.00179736, 0.0191101, 9.73275, 8.73193, 1.44558)
+
+[node name="doorwalsroom1up" parent="." instance=ExtResource("5_i5arm")]
+
+[node name="doorwallsroom" parent="." instance=ExtResource("6_wc5p8")]
+
+[node name="doorwallsroom2" parent="." instance=ExtResource("6_wc5p8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.4848, 0, 0)
+
+[node name="floor4" parent="." instance=ExtResource("1_noarx")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -23.6292, -13.6617, -99.4049)
+
+[editable path="floor2"]
+[editable path="floor3"]
