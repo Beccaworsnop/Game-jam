@@ -13,3 +13,4 @@ mesh = SubResource("BoxMesh_3wdy0")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("BoxShape3D_wago0")
+ 
